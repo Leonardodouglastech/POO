@@ -23,6 +23,15 @@ class Mae(Pessoa):
     def dancar(self):
         print(f'{self.nome} está dançando')
 
+class Pai(Pessoa):
+    def __init__ (self, nome, cpf, corCabelo):
+        super().__init__(nome, cpf)
+        self.corCabelo = corCabelo
+
 mae = Mae("América", "222.333.444-55", "parda")
 print(mae.getCpf())
 
+class Filha(Pessoa, Mae, Pai):
+    def ___init__(self, nome, cpf, corPele, corCabelo):
+        Mae.__init__(self, nome, cpf, corPele)
+        Pai.__init__(self, nome, cpf, corCabelo)
