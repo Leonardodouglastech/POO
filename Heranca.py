@@ -31,7 +31,12 @@ class Pai(Pessoa):
 mae = Mae("América", "222.333.444-55", "parda")
 print(mae.getCpf())
 
-class Filha(Pessoa, Mae, Pai):
-    def ___init__(self, nome, cpf, corPele, corCabelo):
+class Filha( Mae, Pai):
+    def __init__(self, nome, cpf, corPele, corCabelo):
         Mae.__init__(self, nome, cpf, corPele)
         Pai.__init__(self, nome, cpf, corCabelo)
+
+    def engatinhar(self):
+        print(f'{self.nome}, está engatinhando!')
+
+filha1 = Filha('Khatia', '222.222.222-22', 'parda', 'ruivo')
