@@ -1,0 +1,47 @@
+class Veiculo:
+    def __init__(self, marca, modelo, anoFabricacao, preco):
+        self.marca = marca
+        self.modelo = modelo
+        self.anoFabricacao = anoFabricacao
+        self.preco = preco
+
+    def exibirInformacoes(self):
+        '''Exibir informações do veículo'''
+        print(f'O veículo da {self.marca}, ano{self.anoFabricacao}, modelo{self.modelo}, preço {self.preco}.')
+
+class Carro(Veiculo):
+    def __init__(self, marca, modelo, anoFabricacao, preco, nportas, tcombustivel):
+        super().__init__(marca, modelo, anoFabricacao, preco)
+        self.nportas = nportas
+        self.tcombustivel = tcombustivel
+
+class Moto(Veiculo):
+    def __init__(self, marca, modelo, anoFabricacao, preco, cilindrada, tpartida):
+        super().__init__(marca, modelo, anoFabricacao, preco)
+        self.cilindrada = cilindrada
+        self.tpartida = tpartida
+
+class Concessionaria:
+    def __init__(self, nome, endereco):
+        self.nome = nome
+        self.endereco = endereco
+
+    def adicionarVeiculo(self, veiculo):
+        self.__listaVeiculos.append(veiculo)
+        print('veiculo adicionado')
+
+
+Ldcar = Concessionaria('LdCar', 'Rua 1, Pd 10', 'Carro')
+
+carro1 = Carro('Honda', 'Civic', '2024', ' 160000.50', 5, 'Flex')
+carro1.exibirInformacoes()
+
+
+
+
+
+
+    
+
+    
+
