@@ -1,23 +1,28 @@
-#Classe base
-
 class Pessoa:
     def __init__(self, nome, cpf):
         self.nome = nome
         self.__cpf = cpf
 
     def cumprimentar(self):
-        print(f'Olá! Tudo bem? Me chamo {self.nome}')
+        print(f'Olá ! Tudo bem? Me chamo {self.nome}')
 
     def setCpf(self, novoCpf):
         self.__cpf = novoCpf
 
-    
+    def getCpf(self):
+        return self.__cpf 
 
-# instância de um objeto da classe pessoa
 
-pessoa = Pessoa('Tim Maia', '010.200.300-44')
+# criação classe mãe que herda atributos e métodos da classe Pessoa
 
-print(pessoa.nome)
-print(pessoa.getCpf())
+class Mae(Pessoa):
+    def __init__(self, nome, cpf, corPele):
+        super().__init__(nome, cpf)
+        self.corPele = corPele
 
-pessoa.nome = 'Dercy Gonçalves'
+    def dancar(self):
+        print(f'{self.nome} está dançando')
+
+mae = Mae("América", "222.333.444-55", "parda")
+print(mae.getCpf())
+
