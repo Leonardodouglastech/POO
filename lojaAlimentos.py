@@ -3,17 +3,17 @@ class Produto:
         self.__nome = nome
         self.cod = cod
         self.__valor = valor
-        self.__qtd = qtd
+        self.qtd = qtd
     
     def exibirInfor(self):
-         return(f'Nome: {self.__nome}| Código: {self.cod}| Valor: R${self.__valor}| Quantidade: {self.__qtd}')
+         return(f'Nome: {self.__nome}| Código: {self.cod}| Valor: R${self.__valor}| Quantidade: {self.qtd}')
 
     
     def adicionar(self, qtd:int=1):
-        self.__qtd += qtd
+        self.qtd += qtd
 
     def remover(self, qtd:int=1):
-        self.__qtd -= qtd
+        self.qtd -= qtd
 
 
 class Alimento(Produto):
@@ -23,7 +23,7 @@ class Alimento(Produto):
         self.__peso = peso
 
     def exibirInfor(self):
-        return(f'Nome: {self.__nome}| Código: {self.cod}| Valor: R${self.__valor}| Quantidade: {self.__qtd}| Validade: {self.__validade}| Peso: {self.__peso}')
+        return(f'Nome: {self.__nome}| Código: {self.cod}| Valor: R${self.__valor}| Quantidade: {self.qtd}| Validade: {self.__validade}| Peso: {self.__peso}')
 
     
 
@@ -48,3 +48,15 @@ class Estoque:
         for produto in self.__Produtos:
             if codProduto == produto.cod:    
                 self.__listaProdutos.remove(produto)
+
+
+
+    def exibirDisponivel(self):
+        for produto in self.__listaProduto:
+            if produto.qtd >= 1:
+                produto.exibirInfor()
+
+    def exibirIndisponivel(self):
+        for produto in self.__listaProduto:
+            if produto.qtd ==0:
+                produto.exibirInfor()
