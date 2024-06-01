@@ -1,62 +1,84 @@
 class Produto:
-    def __init__(self, nome:str, cod:int, valor:float, qtd:int):
-        self.__nome = nome
+    def __init__(self, nome: str, cod: int, valor: float, qtd: int):
+        self.nome = nome
         self.cod = cod
-        self.__valor = valor
+        self.valor = valor
         self.qtd = qtd
     
     def exibirInfor(self):
-         return(f'Nome: {self.__nome}| Código: {self.cod}| Valor: R${self.__valor}| Quantidade: {self.qtd}')
-
+        return f'Nome: {self.nome}| Código: {self.cod}| Valor: R${self.valor}| Quantidade: {self.qtd}'
     
-    def adicionar(self, qtd:int=1):
+    def adicionar(self, qtd: int = 1):
         self.qtd += qtd
 
-    def remover(self, qtd:int=1):
-        self.qtd -= qtd
-
+    def remover(self, qtd: int = 1):
+        if self.qtd >= qtd:
+            self.qtd -= qtd
+        else:
+            print("Quantidade insuficiente em estoque!")
 
 class Alimento(Produto):
-    def __init__(self, nome, cod, valor, qtd, validade:float, peso:float):
+    def __init__(self, nome, cod, valor, qtd, validade: str, peso: float):
         super().__init__(nome, cod, valor, qtd)
-        self.__validade = validade
-        self.__peso = peso
+        self.validade = validade
+        self.peso = peso
 
     def exibirInfor(self):
-        return(f'Nome: {self.__nome}| Código: {self.cod}| Valor: R${self.__valor}| Quantidade: {self.qtd}| Validade: {self.__validade}| Peso: {self.__peso}')
-
-    
-
+        return f'Nome: {self.nome}| Código: {self.cod}| Valor: R${self.valor}| Quantidade: {self.qtd}| Validade: {self.validade}| Peso: {self.peso}'
 
 class Bebida(Produto):
-    def __init__(self, nome, cod, valor, qtd, alcoolica:bool, ml:float):
+    def __init__(self, nome, cod, valor, qtd, alcoolica: bool, ml: float):
         super().__init__(nome, cod, valor, qtd)
-        self.acoolica = alcoolica
+        self.alcoolica = alcoolica
         self.ml = ml
         
     def exibirInfor(self):
-        return(f'Nome: {self.__nome}| Código: {self.cod}| Valor: R${self.__valor}| Quantidade: {self.__qtd}| Alcoolica: {self._alcoolica}| ML: {self.__ml}')
-    
+        alcoolica_str = 'Sim' if self.alcoolica else 'Não'
+        return f'Nome: {self.nome}| Código: {self.cod}| Valor: R${self.valor}| Quantidade: {self.qtd}| Alcoólica: {alcoolica_str}| ML: {self.ml}'
+
 class Estoque:
-    def ___init__(self,listaProdutos = []):
-        self.__listaProdutos = listaProdutos
+    def __init__(self):
+        self.listaProdutos = []
     
     def adicionar(self, produto):
-        self.__listaProdutos.append(produto)
+        self.listaProdutos.append(produto)
 
-    def remove(self, codProduto):
-        for produto in self.__Produtos:
-            if codProduto == produto.cod:    
-                self.__listaProdutos.remove(produto)
-
-
+    def remover(self, codProduto):
+        for produto in self.listaProdutos:
+            if codProduto == produto.cod:
+                self.listaProdutos.remove(produto)
+                break
 
     def exibirDisponivel(self):
-        for produto in self.__listaProduto:
+        for produto in self.listaProdutos:
             if produto.qtd >= 1:
-                produto.exibirInfor()
+                print(produto.exibirInfor())
 
     def exibirIndisponivel(self):
-        for produto in self.__listaProduto:
-            if produto.qtd ==0:
-                produto.exibirInfor()
+        for produto in self.listaProdutos:
+            if produto.qtd == 0:
+                print(produto.exibirInfor())
+
+    def exibirTodosProdutos(self):
+        for produto in self.__listaProdutos:
+                print(produto.exibirInfor())
+
+
+# Correção na criação dos objetos
+bebida1 = Bebida("Achocolatado", 1, 20, 20.20, False, 250.500)
+alimento1 = Alimento("Arroz", 2, 20, 20.20, 6, 30.30)
+estoque = Estoque()
+estoque.adicionar(bebida1)
+estoque.adicionar(alimento1)
+
+print("Produtos disponíveis:")
+estoque.exibirDisponivel()
+
+bebida1.remover(20)
+print("\nProdutos indisponíveis:")
+estoque.exibirIndisponivel()
+
+estoque.remover(1)
+print("\nProdutos após remoção:")
+estoque.exibirDisponivel()
+
